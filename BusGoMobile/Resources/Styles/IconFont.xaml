@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <x:String x:Key="IconBus">&#xe530;</x:String>
+    <x:String x:Key="IconNotifications">&#xe7f4;</x:String>
+    <x:String x:Key="IconSearch">&#xe8b6;</x:String>
+    <x:String x:Key="IconEvent">&#xe878;</x:String>
+    <x:String x:Key="IconLocationOn">&#xe0c8;</x:String>
+    <x:String x:Key="IconChevronRight">&#xe5cc;</x:String>
+    <x:String x:Key="IconArrowForward">&#xe5c8;</x:String>
+    <x:String x:Key="IconHelp">&#xe8fd;</x:String>
+
+    <x:String x:Key="IconMail">&#xe158;</x:String>
+    <x:String x:Key="IconLock">&#xe897;</x:String>
+    <x:String x:Key="IconVisibility">&#xe8f4;</x:String>
+    <x:String x:Key="IconVisibilityOff">&#xe8f5;</x:String>
+    <x:String x:Key="IconInfo">&#xe88e;</x:String>
+    <x:String x:Key="IconVerifiedUser">&#xe8e8;</x:String>
+    <x:String x:Key="IconCheck">&#xe5ca;</x:String>
+
+    <x:String x:Key="IconAlternateEmail">&#xe0e6;</x:String>
+    <x:String x:Key="IconPhoneIphone">&#xe325;</x:String>
+
+    <x:String x:Key="IconStar">&#xe838;</x:String>
+    <x:String x:Key="IconFlight">&#xe539;</x:String>
+    <x:String x:Key="IconHotel">&#xe53a;</x:String>
+    <x:String x:Key="IconCar">&#xe531;</x:String>
+    <x:String x:Key="IconTripOrigin">&#xe57b;</x:String>
+    <x:String x:Key="IconCalendar">&#xe935;</x:String>
+    <x:String x:Key="IconPerson">&#xe7fd;</x:String>
+    <x:String x:Key="IconVerified">&#xef76;</x:String>
+    <x:String x:Key="IconConfirmationNumber">&#xe638;</x:String>
+    <x:String x:Key="IconHistory">&#xe889;</x:String>
+
+    <x:String x:Key="IconFavorite">&#xe87d;</x:String>
+
+    <x:String x:Key="IconTune">&#xe429;</x:String>
+    <x:String x:Key="IconArrowDownward">&#xe5db;</x:String>
+    <x:String x:Key="IconChair">&#xefe6;</x:String>
+    <x:String x:Key="IconSchedule">&#xe8b5;</x:String>
+    <x:String x:Key="IconExpandMore">&#xe5cf;</x:String>
+    <x:String x:Key="IconEditCalendar">&#xe742;</x:String>
+
+    
+
+</ResourceDictionary>

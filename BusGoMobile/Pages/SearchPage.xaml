@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.SearchPage"
+             BackgroundColor="{StaticResource BgSurface}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- ÜST BAR -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource BgSurface}"
+              Padding="16,12"
+              ColumnDefinitions="Auto,*,Auto"
+              ColumnSpacing="12">
+
+            <Border Grid.Column="0"
+                    WidthRequest="32" HeightRequest="32"
+                    StrokeShape="RoundRectangle 8"
+                    BackgroundColor="{StaticResource BgSecondaryContainer}"
+                    VerticalOptions="Center">
+                <Label Text="🚌" FontSize="16"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                <Label Text="BusGo"
+                       FontSize="17" FontAttributes="Bold"
+                       TextColor="{StaticResource BgOnSurface}" />
+                <Label Text="Bilet Ara"
+                       FontSize="12"
+                       TextColor="{StaticResource BgOnSurfaceVariant}" />
+            </VerticalStackLayout>
+
+            <Border Grid.Column="2"
+                    WidthRequest="32" HeightRequest="32"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="{StaticResource BgSurfaceContainerHighest}"
+                    VerticalOptions="Center">
+                <Label Text="👤" FontSize="14"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+        </Grid>
+
+        <!-- İÇERİK -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,8,16,24" Spacing="20">
+
+                <!-- Başlık -->
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Nereye gitmek istersin?"
+                           FontSize="24" FontAttributes="Bold"
+                           TextColor="{StaticResource BgOnSurface}" />
+                    <Label Text="Otobüs biletini birkaç adımda bul."
+                           FontSize="14"
+                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                </VerticalStackLayout>
+
+                <!-- ARAMA KARTI -->
+                <Border StrokeShape="RoundRectangle 12"
+                        BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                        Padding="12">
+                    <VerticalStackLayout Spacing="12">
+
+                        <!-- Nereden -->
+                        <Border StrokeShape="RoundRectangle 8"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Padding="8">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                <Border Grid.Column="0"
+                                        WidthRequest="32" HeightRequest="32"
+                                        StrokeShape="RoundRectangle 16"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerHighest}"
+                                        VerticalOptions="Center">
+                                    <Label Text="◎" FontSize="16"
+                                           TextColor="{StaticResource BgSecondary}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                    <Label Text="NEREDEN"
+                                           FontSize="11"
+                                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                    <Picker x:Name="FromPicker"
+                                            Title="Kalkış şehri seçin"
+                                            ItemDisplayBinding="{Binding DisplayName}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource BgOnSurface}"
+                                            TitleColor="{StaticResource BgOnSurfaceVariant}"
+                                            BackgroundColor="Transparent" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+
+                        <!-- Yer değiştir butonu -->
+                        <Button x:Name="SwapButton"
+                                Text="⇅  Değiştir"
+                                FontSize="12"
+                                HeightRequest="36"
+                                Padding="0"
+                                BackgroundColor="{StaticResource BgSurfaceContainerHigh}"
+                                TextColor="{StaticResource BgOnSurface}"
+                                CornerRadius="18"
+                                HorizontalOptions="Center"
+                                WidthRequest="140" />
+
+                        <!-- Nereye -->
+                        <Border StrokeShape="RoundRectangle 8"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Padding="8">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                <Border Grid.Column="0"
+                                        WidthRequest="32" HeightRequest="32"
+                                        StrokeShape="RoundRectangle 16"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerHighest}"
+                                        VerticalOptions="Center">
+                                    <Label Text="📍" FontSize="14"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                    <Label Text="NEREYE"
+                                           FontSize="11"
+                                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                    <Picker x:Name="ToPicker"
+                                            Title="Varış şehri seçin"
+                                            ItemDisplayBinding="{Binding DisplayName}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource BgOnSurface}"
+                                            TitleColor="{StaticResource BgOnSurfaceVariant}"
+                                            BackgroundColor="Transparent" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+
+                        <!-- Gidiş Tarihi -->
+                        <Border StrokeShape="RoundRectangle 8"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Padding="8">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                <Border Grid.Column="0"
+                                        WidthRequest="32" HeightRequest="32"
+                                        StrokeShape="RoundRectangle 16"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerHighest}"
+                                        VerticalOptions="Center">
+                                    <Label Text="📅" FontSize="14"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                    <Label Text="GİDİŞ TARİHİ"
+                                           FontSize="11"
+                                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                    <DatePicker x:Name="GoDatePicker"
+                                                Format="dd MMMM dddd"
+                                                FontSize="14"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource BgOnSurface}"
+                                                BackgroundColor="Transparent" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+
+                        <!-- Yolcu Sayısı -->
+                        <Border StrokeShape="RoundRectangle 8"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Padding="8">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                <Border Grid.Column="0"
+                                        WidthRequest="32" HeightRequest="32"
+                                        StrokeShape="RoundRectangle 16"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerHighest}"
+                                        VerticalOptions="Center">
+                                    <Label Text="👤" FontSize="14"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                    <Label Text="YOLCU SAYISI"
+                                           FontSize="11"
+                                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                    <Label x:Name="PassengerLabel"
+                                           Text="1 Yolcu"
+                                           FontSize="14" FontAttributes="Bold"
+                                           TextColor="{StaticResource BgOnSurface}" />
+                                </VerticalStackLayout>
+                                <Stepper x:Name="PassengerStepper"
+                                         Grid.Column="2"
+                                         Minimum="1" Maximum="5"
+                                         Increment="1" Value="1"
+                                         VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+
+                        <!-- Bilet Ara butonu -->
+                        <Button x:Name="SearchButton"
+                                Text="🔍   Bilet Ara"
+                                FontSize="17" FontAttributes="Bold"
+                                HeightRequest="52"
+                                BackgroundColor="{StaticResource BgSecondaryContainer}"
+                                TextColor="{StaticResource BgOnSecondary}"
+                                CornerRadius="12" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Popüler Rotalar (kısayol) -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="POPÜLER ROTALAR"
+                           FontSize="11" FontAttributes="Bold"
+                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                    <ScrollView Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout Spacing="8">
+                            <Border StrokeShape="RoundRectangle 20"
+                                    BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                                    Padding="14,8">
+                                <Label Text="İstanbul → Ankara" FontSize="12"
+                                       TextColor="{StaticResource BgOnSurface}" />
+                            </Border>
+                            <Border StrokeShape="RoundRectangle 20"
+                                    BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                                    Padding="14,8">
+                                <Label Text="İzmir → İstanbul" FontSize="12"
+                                       TextColor="{StaticResource BgOnSurface}" />
+                            </Border>
+                            <Border StrokeShape="RoundRectangle 20"
+                                    BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                                    Padding="14,8">
+                                <Label Text="Bursa → Antalya" FontSize="12"
+                                       TextColor="{StaticResource BgOnSurface}" />
+                            </Border>
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.Test"
+             Title="Test">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Inter font testi -->
+            <Label Text="Inter Regular yazı"
+               FontFamily="InterRegular" FontSize="18" />
+            <Label Text="Inter Bold yazı"
+               FontFamily="InterBold" FontSize="18" />
+            <Label Text="Inter ExtraBold yazı"
+               FontFamily="InterExtraBold" FontSize="18" />
+
+            <!-- Material Symbols ikon testi -->
+            <Label Text="&#xe530;"
+               FontFamily="MaterialSymbols" FontSize="40" />
+            <Label Text="&#xe8b6;"
+               FontFamily="MaterialSymbols" FontSize="40" />
+            <Label Text="&#xe0c8;"
+               FontFamily="MaterialSymbols" FontSize="40" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

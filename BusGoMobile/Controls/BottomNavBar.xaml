@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Controls.BottomNavBar">
+
+    <Border BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+            StrokeThickness="0"
+            Padding="8,6">
+        <Grid ColumnDefinitions="*,*,*,*" HeightRequest="60">
+
+            <!-- Ana Sayfa -->
+            <VerticalStackLayout Grid.Column="0" Spacing="2"
+                                 HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="HomeIcon"
+                       Text="{StaticResource IconBus}"
+                       FontFamily="MaterialSymbols" FontSize="22"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <Label x:Name="HomeText"
+                       Text="Ana Sayfa"
+                       FontFamily="InterMedium" FontSize="11"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHomeTapped" />
+                </VerticalStackLayout.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Biletlerim -->
+            <VerticalStackLayout Grid.Column="1" Spacing="2"
+                                 HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="TripsIcon"
+                       Text="{StaticResource IconConfirmationNumber}"
+                       FontFamily="MaterialSymbols" FontSize="22"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <Label x:Name="TripsText"
+                       Text="Biletlerim"
+                       FontFamily="InterMedium" FontSize="11"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTripsTapped" />
+                </VerticalStackLayout.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Favoriler -->
+            <VerticalStackLayout Grid.Column="2" Spacing="2"
+                                 HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="FavIcon"
+                       Text="{StaticResource IconFavorite}"
+                       FontFamily="MaterialSymbols" FontSize="22"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <Label x:Name="FavText"
+                       Text="Favoriler"
+                       FontFamily="InterMedium" FontSize="11"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFavTapped" />
+                </VerticalStackLayout.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Profil -->
+            <VerticalStackLayout Grid.Column="3" Spacing="2"
+                                 HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="ProfileIcon"
+                       Text="{StaticResource IconPerson}"
+                       FontFamily="MaterialSymbols" FontSize="22"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <Label x:Name="ProfileText"
+                       Text="Profil"
+                       FontFamily="InterMedium" FontSize="11"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalOptions="Center" />
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileTapped" />
+                </VerticalStackLayout.GestureRecognizers>
+            </VerticalStackLayout>
+
+        </Grid>
+    </Border>
+</ContentView>

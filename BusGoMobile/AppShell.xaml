@@ -1,0 +1,33 @@
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:BusGoMobile.Pages"
+       x:Class="BusGoMobile.AppShell"
+       FlyoutBehavior="Disabled">
+
+    <!-- Başlangıç: HomePage (login'i sonra öne alacağız) -->
+    <ShellContent
+        Route="TripListPage"
+        ContentTemplate="{DataTemplate pages:TripListPage}"
+        Shell.TabBarIsVisible="False" />
+
+    <ShellContent
+        Route="MyTripsPage"
+        ContentTemplate="{DataTemplate pages:MyTripsPage}"
+        Shell.TabBarIsVisible="False" />
+
+    <ShellContent
+        Route="FavoritesPage"
+        ContentTemplate="{DataTemplate pages:FavoritesPage}"
+        Shell.TabBarIsVisible="False" />
+
+    <ShellContent
+        Route="ProfilePage"
+        ContentTemplate="{DataTemplate pages:ProfilePage}"
+        Shell.TabBarIsVisible="False" />
+
+    <ShellContent
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Shell.TabBarIsVisible="False" />
+
+</Shell>
