@@ -20,4 +20,17 @@ public partial class TripListPage : ContentPage
         TripsView.ItemsSource = seferler;
         ResultCountLabel.Text = $"Toplam {seferler.Count} sefer bulundu";
     }
+
+    // Bir sefere (karta veya Koltuk Seç butonuna) týklanýnca koltuk seçimine git
+    private async void OnTripTapped(object sender, TappedEventArgs e)
+    {
+        int tripId = (int)e.Parameter;
+        await Shell.Current.GoToAsync($"SeatSelectionPage?tripId={tripId}");
+    }
+
+    // Geri butonu
+    private async void OnBackTapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }

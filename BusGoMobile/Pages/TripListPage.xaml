@@ -19,7 +19,11 @@
                    TextColor="{StaticResource BgOnSurface}"
                    VerticalOptions="Center"
                    WidthRequest="32"
-                   HorizontalTextAlignment="Center" />
+                   HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackTapped" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <Border Grid.Column="1"
                     WidthRequest="32" HeightRequest="32"
@@ -230,6 +234,10 @@
                             <Border StrokeShape="RoundRectangle 12"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
                                     Padding="12">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTripTapped"
+                                                          CommandParameter="{Binding Id}" />
+                                </Border.GestureRecognizers>
                                 <VerticalStackLayout Spacing="8">
 
                                     <!-- Firma satırı + olanak ikonları -->
@@ -336,6 +344,10 @@
                                                     StrokeShape="RoundRectangle 8"
                                                     BackgroundColor="{StaticResource BgSecondary}"
                                                     Padding="16,10" VerticalOptions="Center">
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnTripTapped"
+                                                                          CommandParameter="{Binding Id}" />
+                                                </Border.GestureRecognizers>
                                                 <HorizontalStackLayout Spacing="2">
                                                     <Label Text="Koltuk Seç"
                                                            FontFamily="InterBold" FontSize="15"

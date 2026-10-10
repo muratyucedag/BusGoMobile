@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.PaymentPage"
+             BackgroundColor="{StaticResource BgSurface}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- ÜST BAR -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource BgSurface}"
+              Padding="8,12"
+              ColumnDefinitions="Auto,*"
+              ColumnSpacing="8">
+            <Label Grid.Column="0"
+                   Text="‹" FontSize="28"
+                   TextColor="{StaticResource BgOnSurface}"
+                   VerticalOptions="Center"
+                   WidthRequest="40"
+                   HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Grid.Column="1"
+                   Text="Ödeme"
+                   FontFamily="InterBold" FontSize="17"
+                   TextColor="{StaticResource BgOnSurface}"
+                   VerticalOptions="Center" />
+        </Grid>
+
+        <!-- İÇERİK -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,4,16,16" Spacing="16">
+
+                <!-- Adım göstergesi -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="ADIM 4 / 4 · ÖDEME"
+                           FontFamily="InterBold" FontSize="11"
+                           TextColor="{StaticResource BgSecondary}" />
+                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="6">
+                        <BoxView Grid.Column="0" HeightRequest="5" CornerRadius="3"
+                                 Color="{StaticResource BgSecondary}" />
+                        <BoxView Grid.Column="1" HeightRequest="5" CornerRadius="3"
+                                 Color="{StaticResource BgSecondary}" />
+                        <BoxView Grid.Column="2" HeightRequest="5" CornerRadius="3"
+                                 Color="{StaticResource BgSecondary}" />
+                        <BoxView Grid.Column="3" HeightRequest="5" CornerRadius="3"
+                                 Color="{StaticResource BgSecondary}" />
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- SANAL KART (canlı önizleme) -->
+                <Border StrokeShape="RoundRectangle 16"
+                        StrokeThickness="0"
+                        HeightRequest="200">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{StaticResource BgPrimary}" Offset="0.0" />
+                            <GradientStop Color="{StaticResource BgSecondary}" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid Padding="20" RowDefinitions="Auto,*,Auto">
+
+                        <!-- Üst: çip + logo -->
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+                            <Border Grid.Column="0"
+                                    WidthRequest="40" HeightRequest="30"
+                                    StrokeShape="RoundRectangle 6"
+                                    BackgroundColor="#E8C87E"
+                                    VerticalOptions="Start" />
+                            <Label Grid.Column="2"
+                                   Text="BusGo"
+                                   FontFamily="InterExtraBold" FontSize="18"
+                                   TextColor="White"
+                                   VerticalOptions="Start" />
+                        </Grid>
+
+                        <!-- Orta: kart numarası -->
+                        <Label Grid.Row="1"
+                               x:Name="CardNumberDisplay"
+                               Text="•••• •••• •••• ••••"
+                               FontFamily="InterBold" FontSize="22"
+                               TextColor="White"
+                               VerticalOptions="Center"
+                               CharacterSpacing="2" />
+
+                        <!-- Alt: isim + tarih -->
+                        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="KART SAHİBİ"
+                                       FontFamily="InterMedium" FontSize="9"
+                                       TextColor="White" Opacity="0.7" />
+                                <Label x:Name="CardHolderDisplay"
+                                       Text="AD SOYAD"
+                                       FontFamily="InterSemiBold" FontSize="14"
+                                       TextColor="White" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
+                                <Label Text="SON KUL."
+                                       FontFamily="InterMedium" FontSize="9"
+                                       TextColor="White" Opacity="0.7"
+                                       HorizontalOptions="End" />
+                                <Label x:Name="CardExpiryDisplay"
+                                       Text="AA/YY"
+                                       FontFamily="InterSemiBold" FontSize="14"
+                                       TextColor="White"
+                                       HorizontalOptions="End" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- FORM -->
+                <Border StrokeShape="RoundRectangle 12"
+                        BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                        Padding="16">
+                    <VerticalStackLayout Spacing="16">
+
+                        <!-- Kart numarası -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="KART NUMARASI" FontFamily="InterBold" FontSize="11"
+                                   TextColor="{StaticResource BgOnSurfaceVariant}" />
+                            <Border StrokeShape="RoundRectangle 8"
+                                    BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                    Padding="12,0" HeightRequest="46">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                    <Label Grid.Column="0"
+                                           Text="{StaticResource IconCreditCard}"
+                                           FontFamily="MaterialSymbols" FontSize="18"
+                                           TextColor="{StaticResource BgOutline}"
+                                           VerticalOptions="Center" />
+                                    <Entry Grid.Column="1"
+                                           x:Name="CardNumberEntry"
+                                           Placeholder="1234 5678 9012 3456"
+                                           Keyboard="Numeric"
+                                           MaxLength="19"
+                                           FontFamily="InterSemiBold" FontSize="14"
+                                           TextColor="{StaticResource BgOnSurface}"
+                                           PlaceholderColor="{StaticResource BgOutline}"
+                                           BackgroundColor="Transparent"
+                                           VerticalOptions="Center"
+                                           TextChanged="OnCardNumberChanged" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Kart sahibi -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="KART ÜZERİNDEKİ İSİM" FontFamily="InterBold" FontSize="11"
+                                   TextColor="{StaticResource BgOnSurfaceVariant}" />
+                            <Border StrokeShape="RoundRectangle 8"
+                                    BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                    Padding="12,0" HeightRequest="46">
+                                <Entry x:Name="CardHolderEntry"
+                                       Placeholder="Ad Soyad"
+                                       FontFamily="InterSemiBold" FontSize="14"
+                                       TextColor="{StaticResource BgOnSurface}"
+                                       PlaceholderColor="{StaticResource BgOutline}"
+                                       BackgroundColor="Transparent"
+                                       VerticalOptions="Center"
+                                       TextChanged="OnCardHolderChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Son kullanma + CVV -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="SON KULLANMA" FontFamily="InterBold" FontSize="11"
+                                       TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                <Border StrokeShape="RoundRectangle 8"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                        Padding="12,0" HeightRequest="46">
+                                    <Entry x:Name="ExpiryEntry"
+                                           Placeholder="AA/YY"
+                                           Keyboard="Numeric"
+                                           MaxLength="5"
+                                           FontFamily="InterSemiBold" FontSize="14"
+                                           TextColor="{StaticResource BgOnSurface}"
+                                           PlaceholderColor="{StaticResource BgOutline}"
+                                           BackgroundColor="Transparent"
+                                           VerticalOptions="Center"
+                                           TextChanged="OnExpiryChanged" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="CVV" FontFamily="InterBold" FontSize="11"
+                                       TextColor="{StaticResource BgOnSurfaceVariant}" />
+                                <Border StrokeShape="RoundRectangle 8"
+                                        BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                        Padding="12,0" HeightRequest="46">
+                                    <Entry x:Name="CvvEntry"
+                                           Placeholder="123"
+                                           Keyboard="Numeric"
+                                           MaxLength="3"
+                                           IsPassword="True"
+                                           FontFamily="InterSemiBold" FontSize="14"
+                                           TextColor="{StaticResource BgOnSurface}"
+                                           PlaceholderColor="{StaticResource BgOutline}"
+                                           BackgroundColor="Transparent"
+                                           VerticalOptions="Center" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Güven notu -->
+                <HorizontalStackLayout Spacing="6" HorizontalOptions="Center">
+                    <Label Text="{StaticResource IconLock}"
+                           FontFamily="MaterialSymbols" FontSize="14"
+                           TextColor="{StaticResource BgSecondary}"
+                           VerticalOptions="Center" />
+                    <Label Text="Ödemeniz 256-Bit SSL ile şifrelenir"
+                           FontFamily="InterMedium" FontSize="11"
+                           TextColor="{StaticResource BgOnSurfaceVariant}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ALT ÇUBUK -->
+        <Border Grid.Row="2"
+                BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                StrokeThickness="0"
+                Padding="16,10">
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout Grid.Column="0" Spacing="2" VerticalOptions="Center">
+                    <Label Text="ÖDENECEK TUTAR"
+                           FontFamily="InterBold" FontSize="10"
+                           TextColor="{StaticResource BgOnSurfaceVariant}" />
+                    <HorizontalStackLayout Spacing="2">
+                        <Label x:Name="PriceLabel"
+                               Text="520"
+                               FontFamily="InterExtraBold" FontSize="22"
+                               TextColor="{StaticResource BgOnSurface}"
+                               VerticalOptions="Center" />
+                        <Label Text="TL"
+                               FontFamily="InterBold" FontSize="14"
+                               TextColor="{StaticResource BgSecondary}"
+                               VerticalOptions="End" Margin="0,0,0,3" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Button x:Name="PayButton"
+                        Grid.Column="1"
+                        Text="Ödemeyi Tamamla"
+                        FontFamily="InterBold" FontSize="15"
+                        HeightRequest="48"
+                        Padding="18,0"
+                        BackgroundColor="{StaticResource BgSecondaryContainer}"
+                        TextColor="{StaticResource BgOnSecondary}"
+                        CornerRadius="12"
+                        Clicked="OnPayClicked" />
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

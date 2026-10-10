@@ -42,6 +42,25 @@
     <x:String x:Key="IconExpandMore">&#xe5cf;</x:String>
     <x:String x:Key="IconEditCalendar">&#xe742;</x:String>
 
-    
+    <x:String x:Key="IconMan">&#xe4eb;</x:String>
+    <x:String x:Key="IconWoman">&#xe13e;</x:String>
+    <!--<x:String x:Key="IconCheck">&#xe5ca;</x:String>-->
+    <x:String x:Key="IconWifi">&#xe63e;</x:String>
+    <x:String x:Key="IconPower">&#xe1e0;</x:String>
+    <x:String x:Key="IconTv">&#xe333;</x:String>
+    <x:String x:Key="IconShieldPerson">&#xf0d9;</x:String>
+    <x:String x:Key="IconMeetingRoom">&#xeb4f;</x:String>
+
+    <x:String x:Key="IconMale">&#xe58e;</x:String>
+    <x:String x:Key="IconFemale">&#xe590;</x:String>
+    <x:String x:Key="IconSeat">&#xe63f;</x:String>
+    <x:String x:Key="IconContactMail">&#xe0d0;</x:String>
+    <!--<x:String x:Key="IconLock">&#xe897;</x:String>-->
+
+
+    <x:String x:Key="IconCreditCard">&#xe870;</x:String>
+    <x:String x:Key="IconCalendarMonth">&#xebcc;</x:String>
+
+
 
 </ResourceDictionary>
