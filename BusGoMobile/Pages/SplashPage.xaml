@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.SplashPage"
+             BackgroundColor="Black"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+
+        <!-- Zoom yapan arka plan görseli -->
+        <Image x:Name="SplashImage"
+               Aspect="AspectFill"
+               Scale="1" />
+
+        <!-- Okunabilirlik için alt karartma -->
+        <BoxView VerticalOptions="End"
+                 HeightRequest="320"
+                 InputTransparent="True">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#00000000" Offset="0.0" />
+                    <GradientStop Color="#CC000000" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Üst: logo + Atla -->
+        <Grid VerticalOptions="Start"
+              Padding="20,50,20,0"
+              ColumnDefinitions="Auto,*,Auto">
+            <Border Grid.Column="0"
+                    WidthRequest="36" HeightRequest="36"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="{StaticResource BgSecondaryContainer}"
+                    VerticalOptions="Center">
+                <Label Text="{StaticResource IconBus}"
+                       FontFamily="MaterialSymbols" FontSize="20"
+                       TextColor="White"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+            <Label Grid.Column="1"
+                   Text="BusGo"
+                   FontFamily="InterExtraBold" FontSize="20"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0" />
+
+            <Border Grid.Column="2"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#40FFFFFF"
+                    Padding="14,6"
+                    VerticalOptions="Center">
+                <Label Text="Atla"
+                       FontFamily="InterSemiBold" FontSize="13"
+                       TextColor="White" />
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSkipTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+        </Grid>
+
+        <!-- Alt: başlık + açıklama + noktalar -->
+        <VerticalStackLayout VerticalOptions="End"
+                             Padding="24,0,24,48"
+                             Spacing="16">
+            <VerticalStackLayout Spacing="6">
+                <Label x:Name="SlideTitle"
+                       Text=""
+                       FontFamily="InterExtraBold" FontSize="26"
+                       TextColor="White" />
+                <Label x:Name="SlideSubtitle"
+                       Text=""
+                       FontFamily="InterRegular" FontSize="14"
+                       TextColor="White"
+                       Opacity="0.85" />
+            </VerticalStackLayout>
+
+            <!-- İlerleme noktaları -->
+            <HorizontalStackLayout x:Name="DotsContainer"
+                                   Spacing="6" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

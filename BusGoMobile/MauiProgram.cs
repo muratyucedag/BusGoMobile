@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace BusGoMobile
 {
@@ -40,6 +41,23 @@ namespace BusGoMobile
             builder.Services.AddTransient<BusGoMobile.Pages.SeatSelectionPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.PassengerInfoPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.PaymentPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.SplashPage>();
+
+#if WINDOWS
+        builder.ConfigureLifecycleEvents(events =>
+        {
+            events.AddWindows(windows => windows.OnWindowCreated(window =>
+            {
+                var mauiWindow = window;
+                var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
+                var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+
+                // Telefon oranında sabit boyut (genişlik x yükseklik)
+                appWindow.Resize(new Windows.Graphics.SizeInt32(750, 1100));
+            }));
+        });
+#endif
 
             return builder.Build();
         }

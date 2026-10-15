@@ -61,6 +61,10 @@
     <x:String x:Key="IconCreditCard">&#xe870;</x:String>
     <x:String x:Key="IconCalendarMonth">&#xebcc;</x:String>
 
+    <x:String x:Key="IconGoogle">&#xea88;</x:String>
+    <x:String x:Key="IconApple">&#xe0f0;</x:String>
+    <!--<x:String x:Key="IconArrowForward">&#xe5c8;</x:String>-->
+    <!--<x:String x:Key="IconTripOrigin">&#xe57b;</x:String>-->
 
 
 </ResourceDictionary>
