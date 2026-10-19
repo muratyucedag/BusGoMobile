@@ -1,6 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 
+#if WINDOWS
+using Microsoft.Maui.Handlers;
+#endif
+
 namespace BusGoMobile
 {
     public static class MauiProgram
@@ -15,21 +19,17 @@ namespace BusGoMobile
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
-
-                    // Inter aileleri
                     fonts.AddFont("Inter_18pt-Regular.ttf", "InterRegular");
                     fonts.AddFont("Inter_18pt-Medium.ttf", "InterMedium");
                     fonts.AddFont("Inter_18pt-SemiBold.ttf", "InterSemiBold");
                     fonts.AddFont("Inter_18pt-Bold.ttf", "InterBold");
                     fonts.AddFont("Inter_18pt-ExtraBold.ttf", "InterExtraBold");
 
-                    // Material Symbols ikon fontu
                     fonts.AddFont("MaterialSymbolsOutlined-Regular.ttf", "MaterialSymbols");
-
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<BusGoMobile.Services.DatabaseService>();
@@ -44,24 +44,27 @@ namespace BusGoMobile
             builder.Services.AddTransient<BusGoMobile.Pages.SplashPage>();
 
 #if WINDOWS
-        builder.ConfigureLifecycleEvents(events =>
-        {
-            events.AddWindows(windows => windows.OnWindowCreated(window =>
+            // Windows'ta Entry'nin native kenarlığını kaldır
+            EntryHandler.Mapper.AppendToMapping("NoUnderlineBusGo", (handler, view) =>
             {
-                var mauiWindow = window;
-                var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-                var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
-                var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+                var tb = handler.PlatformView; // Windows native TextBox
+                tb.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+                tb.Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent);
+            });
 
-                // Telefon oranında sabit boyut (genişlik x yükseklik)
-                appWindow.Resize(new Windows.Graphics.SizeInt32(750, 1100));
-            }));
-        });
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddWindows(windows => windows.OnWindowCreated(window =>
+                {
+                    var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                    var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
+                    var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+                    appWindow.Resize(new Windows.Graphics.SizeInt32(750, 1100));
+                }));
+            });
 #endif
 
             return builder.Build();
         }
-
-
     }
 }

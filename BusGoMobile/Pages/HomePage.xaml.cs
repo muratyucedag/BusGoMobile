@@ -1,4 +1,4 @@
-using BusGoMobile.Models;
+ï»¿using BusGoMobile.Models;
 using BusGoMobile.Services;
 
 namespace BusGoMobile.Pages;
@@ -16,10 +16,14 @@ public partial class HomePage : ContentPage
         _db = db;
     }
 
-    // Sayfa her göründüğünde verileri yükle
+    // Sayfa her gÃ¶rÃ¼ndÃ¼ÄŸÃ¼nde verileri yÃ¼kle
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        // GiriÅŸ yapan kullanÄ±cÄ±nÄ±n adÄ±nÄ± gÃ¶ster
+        string isim = Preferences.Get("UserName", "KullanÄ±cÄ±");
+        GreetingLabel.Text = $"Merhaba, {isim} ğŸ‘‹";
 
         if (CategoriesView.ItemsSource == null)
         {
@@ -34,12 +38,12 @@ public partial class HomePage : ContentPage
         }
     }
 
-    // Slider'ı kur: noktaları oluştur, ilk slaytı göster, otomatik döndürmeyi başlat
+    // Slider'Ä± kur: noktalarÄ± oluÅŸtur, ilk slaytÄ± gÃ¶ster, otomatik dÃ¶ndÃ¼rmeyi baÅŸlat
     private void KurSlider()
     {
         if (_kampanyalar.Count == 0) return;
 
-        // Noktaları oluştur
+        // NoktalarÄ± oluÅŸtur
         DotsContainer.Children.Clear();
         for (int i = 0; i < _kampanyalar.Count; i++)
         {
@@ -55,7 +59,7 @@ public partial class HomePage : ContentPage
         _aktifSlayt = 0;
         SlaytiGoster(0);
 
-        // Otomatik döndürme
+        // Otomatik dÃ¶ndÃ¼rme
         if (_kampanyalar.Count > 1)
         {
             Dispatcher.StartTimer(TimeSpan.FromSeconds(4), () =>
@@ -73,7 +77,7 @@ public partial class HomePage : ContentPage
         }
     }
 
-    // Belirli bir slaytı ekrana yansıt
+    // Belirli bir slaytÄ± ekrana yansÄ±t
     private void SlaytiGoster(int index)
     {
         if (index < 0 || index >= _kampanyalar.Count) return;
@@ -85,7 +89,7 @@ public partial class HomePage : ContentPage
         SlideTitle.Text = k.Title;
         SlideSubtitle.Text = k.Subtitle;
 
-        // Noktaları güncelle: aktif olan turuncu, diğerleri gri
+        // NoktalarÄ± gÃ¼ncelle: aktif olan turuncu, diÄŸerleri gri
         var aktifRenk = (Color)Application.Current.Resources["BgSecondary"];
         var pasifRenk = (Color)Application.Current.Resources["BgSurfaceContainerHigh"];
 
@@ -96,7 +100,7 @@ public partial class HomePage : ContentPage
         }
     }
 
-    // Görsele dokununca bir sonraki slayta geç
+    // GÃ¶rsele dokununca bir sonraki slayta geÃ§
     private void OnSlideTapped(object sender, TappedEventArgs e)
     {
         int sonraki = _aktifSlayt + 1;

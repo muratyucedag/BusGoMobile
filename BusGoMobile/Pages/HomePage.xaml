@@ -60,7 +60,8 @@
                 <!-- Karşılama + Puan -->
                 <Grid ColumnDefinitions="*,Auto">
                     <VerticalStackLayout Grid.Column="0" Spacing="2">
-                        <Label Text="Merhaba, Murat 👋"
+                        <Label x:Name="GreetingLabel"   
+                               Text=""
                                FontFamily="InterRegular" FontSize="14"
                                TextColor="{StaticResource BgOnSurfaceVariant}" />
                         <Label Text="Bugün nereye gitmek istersin?"
