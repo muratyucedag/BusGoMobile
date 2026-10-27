@@ -35,12 +35,18 @@
                        TextColor="{StaticResource BgOnSurfaceVariant}" />
             </VerticalStackLayout>
 
+            <!-- Bildirim (tıklanabilir) -->
             <Label Grid.Column="2"
                    Text="{StaticResource IconNotifications}"
                    FontFamily="MaterialSymbols" FontSize="22"
                    TextColor="{StaticResource BgOnSurfaceVariant}"
-                   VerticalOptions="Center" />
+                   VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNotificationsTapped" />
+                </Label.GestureRecognizers>
+            </Label>
 
+            <!-- Profil (tıklanabilir) -->
             <Border Grid.Column="3"
                     WidthRequest="32" HeightRequest="32"
                     StrokeShape="RoundRectangle 16"
@@ -50,6 +56,9 @@
                        FontFamily="MaterialSymbols" FontSize="18"
                        TextColor="{StaticResource BgOnSurfaceVariant}"
                        HorizontalOptions="Center" VerticalOptions="Center" />
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileTapped" />
+                </Border.GestureRecognizers>
             </Border>
         </Grid>
 
@@ -60,7 +69,7 @@
                 <!-- Karşılama + Puan -->
                 <Grid ColumnDefinitions="*,Auto">
                     <VerticalStackLayout Grid.Column="0" Spacing="2">
-                        <Label x:Name="GreetingLabel"   
+                        <Label x:Name="GreetingLabel"
                                Text=""
                                FontFamily="InterRegular" FontSize="14"
                                TextColor="{StaticResource BgOnSurfaceVariant}" />
@@ -87,23 +96,25 @@
                     </Border>
                 </Grid>
 
-                <!-- Ulaşım türü sekmeleri (veritabanından) -->
+                <!-- Ulaşım türü sekmeleri (modern, kompakt chip) -->
                 <CollectionView x:Name="CategoriesView"
                                 ItemsLayout="HorizontalList"
-                                HeightRequest="52">
+                                HeightRequest="44">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border StrokeShape="RoundRectangle 20"
+                            <Border StrokeShape="RoundRectangle 12"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                    Padding="14,10" Margin="0,0,8,0">
-                                <HorizontalStackLayout Spacing="6">
+                                    Stroke="{StaticResource BgOutlineVariant}"
+                                    StrokeThickness="1"
+                                    Padding="12,8" Margin="0,0,8,0">
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
                                     <Label Text="{Binding IconGlyph}"
-                                           FontFamily="MaterialSymbols" FontSize="18"
-                                           TextColor="{StaticResource BgOnSurfaceVariant}"
+                                           FontFamily="MaterialSymbols" FontSize="19"
+                                           TextColor="{StaticResource BgSecondary}"
                                            VerticalOptions="Center" />
                                     <Label Text="{Binding Name}"
-                                           FontFamily="InterRegular" FontSize="14"
-                                           TextColor="{StaticResource BgOnSurfaceVariant}"
+                                           FontFamily="InterSemiBold" FontSize="13"
+                                           TextColor="{StaticResource BgOnSurface}"
                                            VerticalOptions="Center" />
                                 </HorizontalStackLayout>
                             </Border>
@@ -111,10 +122,8 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <!-- KAMPANYA SLIDER (basit, veritabanından) -->
+                <!-- KAMPANYA SLIDER (DEĞİŞTİRİLMEDİ) -->
                 <VerticalStackLayout Spacing="8">
-
-                    <!-- Tek görsel gösteren alan -->
                     <Border StrokeShape="RoundRectangle 12"
                             StrokeThickness="0"
                             HeightRequest="150">
@@ -135,19 +144,15 @@
                                        FontFamily="InterRegular" FontSize="12"
                                        TextColor="White" />
                             </VerticalStackLayout>
-
-                            <!-- Dokununca elle geçiş için -->
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnSlideTapped" />
                             </Grid.GestureRecognizers>
                         </Grid>
                     </Border>
 
-                    <!-- Noktalar -->
                     <HorizontalStackLayout x:Name="DotsContainer"
                                            Spacing="6"
                                            HorizontalOptions="Center" />
-
                 </VerticalStackLayout>
 
                 <!-- Popüler Firmalar -->
@@ -157,10 +162,11 @@
                            TextColor="{StaticResource BgOnSurfaceVariant}" />
                     <ScrollView Orientation="Horizontal"
                                 HorizontalScrollBarVisibility="Never">
-                        <HorizontalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8" Padding="0,0,40,0">
                             <Border StrokeShape="RoundRectangle 20"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                    Padding="14,6">
+                                    Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                    Padding="14,7">
                                 <HorizontalStackLayout Spacing="4">
                                     <Label Text="{StaticResource IconVerified}"
                                            FontFamily="MaterialSymbols" FontSize="15"
@@ -173,7 +179,8 @@
                             </Border>
                             <Border StrokeShape="RoundRectangle 20"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                    Padding="14,6">
+                                    Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                    Padding="14,7">
                                 <HorizontalStackLayout Spacing="4">
                                     <Label Text="{StaticResource IconVerified}"
                                            FontFamily="MaterialSymbols" FontSize="15"
@@ -186,7 +193,8 @@
                             </Border>
                             <Border StrokeShape="RoundRectangle 20"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                    Padding="14,6">
+                                    Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                    Padding="14,7">
                                 <HorizontalStackLayout Spacing="4">
                                     <Label Text="{StaticResource IconVerified}"
                                            FontFamily="MaterialSymbols" FontSize="15"
@@ -199,7 +207,8 @@
                             </Border>
                             <Border StrokeShape="RoundRectangle 20"
                                     BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                    Padding="14,6">
+                                    Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                    Padding="14,7">
                                 <HorizontalStackLayout Spacing="4">
                                     <Label Text="{StaticResource IconVerified}"
                                            FontFamily="MaterialSymbols" FontSize="15"
@@ -214,200 +223,80 @@
                     </ScrollView>
                 </VerticalStackLayout>
 
-                <!-- Popüler Rotalar (yatay, premium kartlar) -->
-                <VerticalStackLayout Spacing="12">
+                <!-- Popüler Rotalar (CarouselView + peek + indicator) -->
+                <VerticalStackLayout Spacing="10">
                     <Grid ColumnDefinitions="*,Auto">
                         <Label Grid.Column="0" Text="Popüler Rotalar"
                                FontFamily="InterBold" FontSize="17"
                                TextColor="{StaticResource BgOnSurface}" />
                         <Label Grid.Column="1" Text="Tümünü Gör"
-                               FontFamily="InterMedium" FontSize="12"
+                               FontFamily="InterSemiBold" FontSize="12"
                                TextColor="{StaticResource BgSecondary}"
-                               VerticalOptions="Center" />
+                               VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewAllRoutesTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </Grid>
 
-                    <ScrollView Orientation="Horizontal"
-                                HorizontalScrollBarVisibility="Never">
-                        <HorizontalStackLayout Spacing="12">
-
-                            <!-- Kart 1 -->
-                            <Border StrokeShape="RoundRectangle 16"
-                                    StrokeThickness="0"
-                                    WidthRequest="200" HeightRequest="150"
-                                    Padding="0">
-                                <Grid>
-                                    <Border StrokeShape="RoundRectangle 16" StrokeThickness="0">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                <GradientStop Color="{StaticResource BgSecondaryContainer}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BgSecondary}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Ellipse WidthRequest="120" HeightRequest="120"
-                                             Fill="White" Opacity="0.08"
-                                             HorizontalOptions="End" VerticalOptions="Start"
-                                             Margin="0,-40,-40,0" />
-                                    <Grid Padding="14" RowDefinitions="Auto,*,Auto">
-                                        <Label Grid.Row="0" Text="İstanbul → Ankara"
-                                               FontFamily="InterBold" FontSize="16"
-                                               TextColor="White" />
-                                        <Border Grid.Row="1"
-                                                StrokeShape="RoundRectangle 10"
-                                                BackgroundColor="#33FFFFFF"
-                                                Padding="8,3"
-                                                HorizontalOptions="Start" VerticalOptions="Start"
-                                                Margin="0,8,0,0">
-                                            <Label Text="Günlük 48 sefer"
-                                                   FontFamily="InterMedium" FontSize="11"
-                                                   TextColor="White" />
+                    <CarouselView x:Name="PopularRoutesView"
+                                  HeightRequest="150"
+                                  Loop="False"
+                                  PeekAreaInsets="0,0,45,0"
+                                  IndicatorView="PopularRoutesIndicator">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               ItemSpacing="12"
+                                               SnapPointsType="MandatorySingle"
+                                               SnapPointsAlignment="Start" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 16"
+                                        StrokeThickness="0">
+                                    <Grid>
+                                        <Border StrokeShape="RoundRectangle 16" StrokeThickness="0">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="{Binding Color1}" Offset="0.0" />
+                                                    <GradientStop Color="{Binding Color2}" Offset="1.0" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
                                         </Border>
-                                        <VerticalStackLayout Grid.Row="2" Spacing="0">
-                                            <Label Text="Başlangıç"
-                                                   FontFamily="InterRegular" FontSize="10"
-                                                   TextColor="White" Opacity="0.85" />
-                                            <Label Text="450 TL"
-                                                   FontFamily="InterExtraBold" FontSize="22"
+                                        <Grid Padding="16" RowDefinitions="Auto,*,Auto">
+                                            <Label Grid.Row="0" Text="{Binding Route}"
+                                                   FontFamily="InterBold" FontSize="16"
                                                    TextColor="White" />
-                                        </VerticalStackLayout>
+                                            <Border Grid.Row="1"
+                                                    StrokeShape="RoundRectangle 10"
+                                                    BackgroundColor="#33FFFFFF"
+                                                    Padding="8,3"
+                                                    HorizontalOptions="Start" VerticalOptions="Start"
+                                                    Margin="0,8,0,0">
+                                                <Label Text="{Binding Trips}"
+                                                       FontFamily="InterMedium" FontSize="11"
+                                                       TextColor="White" />
+                                            </Border>
+                                            <VerticalStackLayout Grid.Row="2" Spacing="0">
+                                                <Label Text="Başlangıç"
+                                                       FontFamily="InterRegular" FontSize="10"
+                                                       TextColor="White" Opacity="0.85" />
+                                                <Label Text="{Binding Price}"
+                                                       FontFamily="InterExtraBold" FontSize="23"
+                                                       TextColor="White" />
+                                            </VerticalStackLayout>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Border>
+                                </Border>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
 
-                            <!-- Kart 2 -->
-                            <Border StrokeShape="RoundRectangle 16"
-                                    StrokeThickness="0"
-                                    WidthRequest="200" HeightRequest="150"
-                                    Padding="0">
-                                <Grid>
-                                    <Border StrokeShape="RoundRectangle 16" StrokeThickness="0">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                <GradientStop Color="{StaticResource BgPrimary}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BgInverseSurface}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Ellipse WidthRequest="120" HeightRequest="120"
-                                             Fill="White" Opacity="0.06"
-                                             HorizontalOptions="End" VerticalOptions="Start"
-                                             Margin="0,-40,-40,0" />
-                                    <Grid Padding="14" RowDefinitions="Auto,*,Auto">
-                                        <Label Grid.Row="0" Text="İzmir → İstanbul"
-                                               FontFamily="InterBold" FontSize="16"
-                                               TextColor="White" />
-                                        <Border Grid.Row="1"
-                                                StrokeShape="RoundRectangle 10"
-                                                BackgroundColor="#33FFFFFF"
-                                                Padding="8,3"
-                                                HorizontalOptions="Start" VerticalOptions="Start"
-                                                Margin="0,8,0,0">
-                                            <Label Text="Günlük 36 sefer"
-                                                   FontFamily="InterMedium" FontSize="11"
-                                                   TextColor="White" />
-                                        </Border>
-                                        <VerticalStackLayout Grid.Row="2" Spacing="0">
-                                            <Label Text="Başlangıç"
-                                                   FontFamily="InterRegular" FontSize="10"
-                                                   TextColor="White" Opacity="0.85" />
-                                            <Label Text="550 TL"
-                                                   FontFamily="InterExtraBold" FontSize="22"
-                                                   TextColor="White" />
-                                        </VerticalStackLayout>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-
-                            <!-- Kart 3 -->
-                            <Border StrokeShape="RoundRectangle 16"
-                                    StrokeThickness="0"
-                                    WidthRequest="200" HeightRequest="150"
-                                    Padding="0">
-                                <Grid>
-                                    <Border StrokeShape="RoundRectangle 16" StrokeThickness="0">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                <GradientStop Color="{StaticResource BgSecondaryContainer}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BgSecondary}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Ellipse WidthRequest="120" HeightRequest="120"
-                                             Fill="White" Opacity="0.08"
-                                             HorizontalOptions="End" VerticalOptions="Start"
-                                             Margin="0,-40,-40,0" />
-                                    <Grid Padding="14" RowDefinitions="Auto,*,Auto">
-                                        <Label Grid.Row="0" Text="Bursa → Antalya"
-                                               FontFamily="InterBold" FontSize="16"
-                                               TextColor="White" />
-                                        <Border Grid.Row="1"
-                                                StrokeShape="RoundRectangle 10"
-                                                BackgroundColor="#33FFFFFF"
-                                                Padding="8,3"
-                                                HorizontalOptions="Start" VerticalOptions="Start"
-                                                Margin="0,8,0,0">
-                                            <Label Text="Günlük 22 sefer"
-                                                   FontFamily="InterMedium" FontSize="11"
-                                                   TextColor="White" />
-                                        </Border>
-                                        <VerticalStackLayout Grid.Row="2" Spacing="0">
-                                            <Label Text="Başlangıç"
-                                                   FontFamily="InterRegular" FontSize="10"
-                                                   TextColor="White" Opacity="0.85" />
-                                            <Label Text="620 TL"
-                                                   FontFamily="InterExtraBold" FontSize="22"
-                                                   TextColor="White" />
-                                        </VerticalStackLayout>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-
-                            <!-- Kart 4 -->
-                            <Border StrokeShape="RoundRectangle 16"
-                                    StrokeThickness="0"
-                                    WidthRequest="200" HeightRequest="150"
-                                    Padding="0">
-                                <Grid>
-                                    <Border StrokeShape="RoundRectangle 16" StrokeThickness="0">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                <GradientStop Color="{StaticResource BgPrimary}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BgInverseSurface}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Ellipse WidthRequest="120" HeightRequest="120"
-                                             Fill="White" Opacity="0.06"
-                                             HorizontalOptions="End" VerticalOptions="Start"
-                                             Margin="0,-40,-40,0" />
-                                    <Grid Padding="14" RowDefinitions="Auto,*,Auto">
-                                        <Label Grid.Row="0" Text="Ankara → Eskişehir"
-                                               FontFamily="InterBold" FontSize="16"
-                                               TextColor="White" />
-                                        <Border Grid.Row="1"
-                                                StrokeShape="RoundRectangle 10"
-                                                BackgroundColor="#33FFFFFF"
-                                                Padding="8,3"
-                                                HorizontalOptions="Start" VerticalOptions="Start"
-                                                Margin="0,8,0,0">
-                                            <Label Text="Günlük 54 sefer"
-                                                   FontFamily="InterMedium" FontSize="11"
-                                                   TextColor="White" />
-                                        </Border>
-                                        <VerticalStackLayout Grid.Row="2" Spacing="0">
-                                            <Label Text="Başlangıç"
-                                                   FontFamily="InterRegular" FontSize="10"
-                                                   TextColor="White" Opacity="0.85" />
-                                            <Label Text="180 TL"
-                                                   FontFamily="InterExtraBold" FontSize="22"
-                                                   TextColor="White" />
-                                        </VerticalStackLayout>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-
-                        </HorizontalStackLayout>
-                    </ScrollView>
+                    <IndicatorView x:Name="PopularRoutesIndicator"
+                                   IndicatorColor="{StaticResource BgSurfaceContainerHigh}"
+                                   SelectedIndicatorColor="{StaticResource BgSecondary}"
+                                   IndicatorSize="7"
+                                   HorizontalOptions="Center" />
                 </VerticalStackLayout>
 
                 <!-- Güven Bandı -->
@@ -439,7 +328,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- ALT NAVBAR -->
+        <!-- ALT NAVBAR (DEĞİŞTİRİLMEDİ) -->
         <controls:BottomNavBar Grid.Row="2" ActiveTab="home" />
     </Grid>
 </ContentPage>

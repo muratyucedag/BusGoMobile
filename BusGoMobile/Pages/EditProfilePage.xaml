@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.EditProfilePage"
+             BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+              Padding="12,12"
+              ColumnDefinitions="Auto,*"
+              ColumnSpacing="10">
+            <Border Grid.Column="0"
+                    WidthRequest="40" HeightRequest="40"
+                    StrokeShape="RoundRectangle 12"
+                    BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                    VerticalOptions="Center">
+                <Label Text="‹" FontSize="24"
+                       TextColor="{StaticResource BgOnSurface}"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+            <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                <Label Text="Kişisel Bilgiler"
+                       FontFamily="InterBold" FontSize="17"
+                       TextColor="{StaticResource BgOnSurface}" />
+                <Label Text="Hesap bilgilerini güncelle"
+                       FontFamily="InterRegular" FontSize="12"
+                       TextColor="{StaticResource BgOnSurfaceVariant}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- İÇERİK -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="24,8,24,24" Spacing="16">
+
+                <!-- Profil özeti -->
+                <HorizontalStackLayout Spacing="14">
+                    <Border WidthRequest="54" HeightRequest="54"
+                            StrokeShape="RoundRectangle 27"
+                            BackgroundColor="{StaticResource BgSecondaryContainer}"
+                            VerticalOptions="Center">
+                        <Label Text="{StaticResource IconPerson}"
+                               FontFamily="MaterialSymbols" FontSize="28"
+                               TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                        <Label x:Name="UserNamePreviewLabel"
+                               Text="Kullanıcı"
+                               FontFamily="InterExtraBold" FontSize="17"
+                               TextColor="{StaticResource BgOnSurface}" />
+                        <Label Text="BusGo Üyesi"
+                               FontFamily="InterMedium" FontSize="12"
+                               TextColor="{StaticResource BgSecondary}" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- Ad + Soyad -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="11">
+                    <VerticalStackLayout Grid.Column="0" Spacing="6">
+                        <Label Text="Ad" FontFamily="InterSemiBold" FontSize="13"
+                               TextColor="{StaticResource BgOnSurface}" />
+                        <Border x:Name="FirstNameBorder"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                Padding="14,0" HeightRequest="52">
+                            <Grid ColumnDefinitions="22,*" ColumnSpacing="10">
+                                <Label Grid.Column="0" Text="{StaticResource IconPerson}"
+                                       FontFamily="MaterialSymbols" FontSize="18"
+                                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Entry Grid.Column="1" x:Name="FirstNameEntry"
+                                       Placeholder="Adınız"
+                                       FontFamily="InterMedium" FontSize="14"
+                                       TextColor="{StaticResource BgOnSurface}"
+                                       PlaceholderColor="{StaticResource BgOutline}"
+                                       BackgroundColor="Transparent"
+                                       HeightRequest="50" VerticalOptions="Center"
+                                       Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="Soyad" FontFamily="InterSemiBold" FontSize="13"
+                               TextColor="{StaticResource BgOnSurface}" />
+                        <Border x:Name="LastNameBorder"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                                Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                Padding="14,0" HeightRequest="52">
+                            <Grid ColumnDefinitions="22,*" ColumnSpacing="10">
+                                <Label Grid.Column="0" Text="{StaticResource IconPerson}"
+                                       FontFamily="MaterialSymbols" FontSize="18"
+                                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Entry Grid.Column="1" x:Name="LastNameEntry"
+                                       Placeholder="Soyadınız"
+                                       FontFamily="InterMedium" FontSize="14"
+                                       TextColor="{StaticResource BgOnSurface}"
+                                       PlaceholderColor="{StaticResource BgOutline}"
+                                       BackgroundColor="Transparent"
+                                       HeightRequest="50" VerticalOptions="Center"
+                                       Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- E-posta -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="E-posta Adresi" FontFamily="InterSemiBold" FontSize="13"
+                           TextColor="{StaticResource BgOnSurface}" />
+                    <Border x:Name="EmailBorder"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                            Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                            Padding="14,0" HeightRequest="52">
+                        <Grid ColumnDefinitions="22,*" ColumnSpacing="10">
+                            <Label Grid.Column="0" Text="{StaticResource IconMail}"
+                                   FontFamily="MaterialSymbols" FontSize="18"
+                                   TextColor="{StaticResource BgOnSurfaceVariant}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Entry Grid.Column="1" x:Name="EmailEntry"
+                                   Placeholder="ornek@email.com"
+                                   Keyboard="Email"
+                                   FontFamily="InterMedium" FontSize="14"
+                                   TextColor="{StaticResource BgOnSurface}"
+                                   PlaceholderColor="{StaticResource BgOutline}"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="50" VerticalOptions="Center"
+                                   Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Telefon -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Cep Telefonu" FontFamily="InterSemiBold" FontSize="13"
+                           TextColor="{StaticResource BgOnSurface}" />
+                    <Border x:Name="PhoneBorder"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="{StaticResource BgSurfaceContainerLow}"
+                            Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                            Padding="14,0" HeightRequest="52">
+                        <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="10">
+                            <Label Grid.Column="0" Text="+90"
+                                   FontFamily="InterBold" FontSize="14"
+                                   TextColor="{StaticResource BgOnSurface}"
+                                   VerticalOptions="Center" />
+                            <BoxView Grid.Column="1" WidthRequest="1"
+                                     Color="{StaticResource BgOutlineVariant}" Margin="2,14" />
+                            <Entry Grid.Column="2" x:Name="PhoneEntry"
+                                   Placeholder="5XX XXX XX XX"
+                                   Keyboard="Telephone"
+                                   MaxLength="10"
+                                   FontFamily="InterMedium" FontSize="14"
+                                   TextColor="{StaticResource BgOnSurface}"
+                                   PlaceholderColor="{StaticResource BgOutline}"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="50" VerticalOptions="Center"
+                                   Focused="OnEntryFocused" Unfocused="OnEntryUnfocused" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ALT: KAYDET -->
+        <Border Grid.Row="2"
+                BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                StrokeThickness="0"
+                Padding="24,10,24,16">
+            <Border x:Name="SaveButtonBorder"
+                    StrokeShape="RoundRectangle 14"
+                    BackgroundColor="{StaticResource BgSecondaryContainer}"
+                    StrokeThickness="0"
+                    HeightRequest="55">
+                <Grid>
+                    <HorizontalStackLayout x:Name="SaveButtonContent"
+                                           Spacing="8"
+                                           HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="{StaticResource IconDone}"
+                               FontFamily="MaterialSymbols" FontSize="18"
+                               TextColor="White" VerticalOptions="Center" />
+                        <Label Text="Değişiklikleri Kaydet"
+                               FontFamily="InterBold" FontSize="16"
+                               TextColor="White" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <ActivityIndicator x:Name="SaveSpinner"
+                                       IsVisible="False" IsRunning="False"
+                                       Color="White"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSaveTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -152,5 +152,41 @@ namespace BusGoMobile.Services
 
             return results.FirstOrDefault();
         }
+
+        // Kullanıcıyı Id ile getir
+        public async Task<User> GetUserByIdAsync(int id)
+        {
+            await InitAsync();
+
+            var results = await _db.QueryAsync<User>(
+                "SELECT * FROM User WHERE Id = ? LIMIT 1;", id);
+
+            return results.FirstOrDefault();
+        }
+
+        // Kullanıcı bilgilerini güncelle
+        public async Task<int> UpdateUserAsync(User user)
+        {
+            await InitAsync();
+
+            return await _db.ExecuteAsync(
+                @"UPDATE User
+              SET FirstName = ?, LastName = ?, Email = ?, Phone = ?
+              WHERE Id = ?;",
+                user.FirstName, user.LastName, user.Email, user.Phone, user.Id);
+        }
+
+        // Bu e-posta başka bir kullanıcıda var mı? (kendisi hariç)
+        public async Task<bool> EmailExistsForAnotherUserAsync(string email, int currentUserId)
+        {
+            await InitAsync();
+
+            int count = await _db.ExecuteScalarAsync<int>(
+                "SELECT COUNT(*) FROM User WHERE Email = ? AND Id <> ?;",
+                email, currentUserId);
+
+            return count > 0;
+        }
+
     }
 }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusGoMobile.Pages.LoginSuccessPage"
+             BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
+
+    <Grid>
+
+        <!-- ALT SİLİK YOL GÖRSELİ (AccountLoading ile aynı) -->
+        <Grid VerticalOptions="End" HeightRequest="300" InputTransparent="True">
+            <Image Source="bus1.png"
+                   Aspect="AspectFill"
+                   VerticalOptions="Fill"
+                   Opacity="0.5" />
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFFFFFFF" Offset="0.0" />
+                        <GradientStop Color="#FFFFFFFF" Offset="0.45" />
+                        <GradientStop Color="#CCFFFFFF" Offset="0.75" />
+                        <GradientStop Color="#88FFFFFF" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+        </Grid>
+
+        <!-- Çok hafif üst ambient glow -->
+        <Ellipse WidthRequest="260" HeightRequest="260"
+                 Fill="{StaticResource BgSecondaryContainer}"
+                 Opacity="0.08"
+                 HorizontalOptions="Center" VerticalOptions="Start"
+                 Margin="0,-80,0,0"
+                 InputTransparent="True" />
+
+        <!-- ORTA İÇERİK -->
+        <VerticalStackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="0"
+                             Padding="32,0">
+
+            <!-- Başarı dairesi + check -->
+            <Border x:Name="CheckCircle"
+                    WidthRequest="92" HeightRequest="92"
+                    StrokeShape="RoundRectangle 46"
+                    BackgroundColor="{StaticResource BgSecondaryContainer}"
+                    HorizontalOptions="Center"
+                    Opacity="0" Scale="0.6">
+                <Label Text="{StaticResource IconCheck}"
+                       FontFamily="MaterialSymbols" FontSize="46"
+                       TextColor="White"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+
+            <!-- Metinler -->
+            <VerticalStackLayout x:Name="TextArea"
+                                 Spacing="6"
+                                 Margin="0,28,0,0"
+                                 Opacity="0">
+                <Label Text="Hoş Geldiniz!"
+                       FontFamily="InterExtraBold" FontSize="24"
+                       TextColor="{StaticResource BgOnSurface}"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="Giriş işleminiz başarıyla tamamlandı."
+                       FontFamily="InterRegular" FontSize="14"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="BusGo ile yolculuğa hazırsınız."
+                       FontFamily="InterMedium" FontSize="13"
+                       TextColor="{StaticResource BgSecondary}"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,2,0,0" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- ALT BUTON -->
+        <Border x:Name="ContinueButton"
+                VerticalOptions="End"
+                Margin="24,0,24,28"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{StaticResource BgSecondaryContainer}"
+                StrokeThickness="0"
+                HeightRequest="55"
+                Opacity="0">
+            <HorizontalStackLayout Spacing="8"
+                                   HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Devam Et"
+                       FontFamily="InterBold" FontSize="16"
+                       TextColor="White" VerticalOptions="Center" />
+                <Label Text="{StaticResource IconArrowForward}"
+                       FontFamily="MaterialSymbols" FontSize="18"
+                       TextColor="White" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnContinueTapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentPage>

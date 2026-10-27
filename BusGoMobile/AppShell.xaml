@@ -16,6 +16,18 @@
         ContentTemplate="{DataTemplate pages:LoginPage}"
         Shell.TabBarIsVisible="False" />
 
+    <!-- YÜKLENİYOR EKRANI -->
+    <ShellContent
+        Route="AccountLoadingPage"
+        ContentTemplate="{DataTemplate pages:AccountLoadingPage}"
+        Shell.TabBarIsVisible="False" />
+    
+    <!-- HOŞGELDİNİZ EKRANI -->
+    <ShellContent
+        Route="LoginSuccessPage"
+        ContentTemplate="{DataTemplate pages:LoginSuccessPage}"
+        Shell.TabBarIsVisible="False" />
+
     <!-- ANA SAYFA -->
     <ShellContent
         Route="HomePage"

@@ -11,6 +11,7 @@ namespace BusGoMobile.Models
         public string Password { get; set; }
         public int MarketingOptIn { get; set; }
         public string CreatedAt { get; set; }
+        public int Points { get; set; }
 
     }
 }

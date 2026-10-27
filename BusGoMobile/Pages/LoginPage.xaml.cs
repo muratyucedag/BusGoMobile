@@ -75,7 +75,9 @@ public partial class LoginPage : ContentPage
         Preferences.Set("UserId", user.Id);
         Preferences.Set("UserName", user.FirstName);
 
-        await Shell.Current.GoToAsync("//HomePage");
+        //await Shell.Current.GoToAsync("//HomePage");
+        await Shell.Current.GoToAsync("//AccountLoadingPage");
+        //await Shell.Current.GoToAsync("//LoginSuccessPage");
     }
 
     private void SetBusy(bool busy)

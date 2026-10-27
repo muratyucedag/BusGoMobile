@@ -12,7 +12,7 @@
             Routing.RegisterRoute("SeatSelectionPage", typeof(Pages.SeatSelectionPage));
             Routing.RegisterRoute("PassengerInfoPage", typeof(Pages.PassengerInfoPage));
             Routing.RegisterRoute("PaymentPage", typeof(Pages.PaymentPage));
-
+            Routing.RegisterRoute("EditProfilePage", typeof(Pages.EditProfilePage));
         }
     }
 }

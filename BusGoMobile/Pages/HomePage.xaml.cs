@@ -36,6 +36,23 @@ public partial class HomePage : ContentPage
             _kampanyalar = await _db.GetCampaignsAsync();
             KurSlider();
         }
+
+        // Popüler rotalar (UI için statik)
+        if (PopularRoutesView.ItemsSource == null)
+        {
+            var turuncu1 = (Color)Application.Current.Resources["BgSecondaryContainer"];
+            var turuncu2 = (Color)Application.Current.Resources["BgSecondary"];
+            var lacivert1 = (Color)Application.Current.Resources["BgPrimary"];
+            var lacivert2 = (Color)Application.Current.Resources["BgInverseSurface"];
+
+            PopularRoutesView.ItemsSource = new List<PopularRoute>
+            {
+                new() { Route = "İstanbul → Ankara",   Trips = "Günlük 48 sefer", Price = "450 TL", Color1 = turuncu1,  Color2 = turuncu2 },
+                new() { Route = "İzmir → İstanbul",     Trips = "Günlük 36 sefer", Price = "550 TL", Color1 = lacivert1, Color2 = lacivert2 },
+                new() { Route = "Bursa → Antalya",      Trips = "Günlük 22 sefer", Price = "620 TL", Color1 = turuncu1,  Color2 = turuncu2 },
+                new() { Route = "Ankara → Eskişehir",   Trips = "Günlük 54 sefer", Price = "180 TL", Color1 = lacivert1, Color2 = lacivert2 },
+            };
+        }
     }
 
     // Slider'ı kur: noktaları oluştur, ilk slaytı göster, otomatik döndürmeyi başlat
@@ -43,7 +60,6 @@ public partial class HomePage : ContentPage
     {
         if (_kampanyalar.Count == 0) return;
 
-        // Noktaları oluştur
         DotsContainer.Children.Clear();
         for (int i = 0; i < _kampanyalar.Count; i++)
         {
@@ -59,7 +75,6 @@ public partial class HomePage : ContentPage
         _aktifSlayt = 0;
         SlaytiGoster(0);
 
-        // Otomatik döndürme
         if (_kampanyalar.Count > 1)
         {
             Dispatcher.StartTimer(TimeSpan.FromSeconds(4), () =>
@@ -89,7 +104,6 @@ public partial class HomePage : ContentPage
         SlideTitle.Text = k.Title;
         SlideSubtitle.Text = k.Subtitle;
 
-        // Noktaları güncelle: aktif olan turuncu, diğerleri gri
         var aktifRenk = (Color)Application.Current.Resources["BgSecondary"];
         var pasifRenk = (Color)Application.Current.Resources["BgSurfaceContainerHigh"];
 
@@ -108,4 +122,32 @@ public partial class HomePage : ContentPage
             sonraki = 0;
         SlaytiGoster(sonraki);
     }
+
+    // Tümünü Gör
+    private async void OnViewAllRoutesTapped(object sender, TappedEventArgs e)
+    {
+        await DisplayAlert("Popüler Rotalar", "Tüm rotalar sayfası daha sonra eklenecek.", "Tamam");
+    }
+
+    // Bildirim ikonu
+    private async void OnNotificationsTapped(object sender, TappedEventArgs e)
+    {
+        await DisplayAlert("Bildirimler", "Henüz yeni bir bildiriminiz yok.", "Tamam");
+    }
+
+    // Profil ikonu
+    private async void OnProfileTapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("//ProfilePage");
+    }
+}
+
+// Popüler rotalar için minimal model (UI amaçlı, DB tablosu değil)
+public class PopularRoute
+{
+    public string Route { get; set; }
+    public string Trips { get; set; }
+    public string Price { get; set; }
+    public Color Color1 { get; set; }
+    public Color Color2 { get; set; }
 }

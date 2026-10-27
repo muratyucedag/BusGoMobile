@@ -42,6 +42,10 @@ namespace BusGoMobile
             builder.Services.AddTransient<BusGoMobile.Pages.PassengerInfoPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.PaymentPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.SplashPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.AccountLoadingPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.LoginSuccessPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.ProfilePage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.EditProfilePage>();
 
 #if WINDOWS
             // Windows'ta Entry'nin native kenarlığını kaldır
